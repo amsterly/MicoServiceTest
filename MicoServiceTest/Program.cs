@@ -16,6 +16,7 @@ namespace MicoServiceTest
         static void Main(string[] args)
         {
             //修改----------------
+            //可以使用TopShelf将exe发布成win服务 http://www.cnblogs.com/jys509/p/4614975.html cmd->项目根目录 MicoServiceTest.exe install 即可
             //initialize log4net
             InitLog4Net();
 

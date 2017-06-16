@@ -15,7 +15,7 @@ namespace MicoServiceTest
     {
         static void Main(string[] args)
         {
-
+            //修改----------------
             //initialize log4net
             InitLog4Net();
 

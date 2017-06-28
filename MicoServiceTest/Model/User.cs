@@ -10,6 +10,6 @@ namespace MicoServiceTest.Model
     {
         public String id{get;set;}
         public String name { get; set; }
-        public int age { get; set; }
+        public DateTime bir { get; set; }
     }
 }

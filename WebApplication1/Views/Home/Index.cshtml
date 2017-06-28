@@ -8,7 +8,7 @@
     <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
-<div class="row">
+<div id="bitch" class="row">
     <div class="col-md-4">
         <h2>Getting started</h2>
         <p>
@@ -17,6 +17,11 @@
             for enjoyable, agile development.
         </p>
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <input type="button" id="fuckclick1" name="btn" value="GET-Basic"/>
+        <input type="button" id="fuckclick2" name="btn" value="GET-[FromUri]-Bean]" />
+        <input type="button" id="fuckclick3" name="btn" value="GET-Json-DeserializeObject" />
+        <input type="button" id="fuckclick4" name="btn" value="POST-[FromBody]-SingeClass" />
+        <input type="button" id="fuckclick5" name="btn" value="POST-Dynamic" />
     </div>
     <div class="col-md-4">
         <h2>Get more libraries</h2>
@@ -29,3 +34,86 @@
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+
+
+@section scripts{
+<script type="text/javascript" language="javascript">
+    //window.alert("Click");
+    $(document).ready(function () {
+        $("#fuckclick1").click(function () {
+            //window.alert("Click");
+            $.ajax({
+                type: "get",
+                url: "http://localhost:8701/data/",
+                data: { id: 1, name: "Jim", bir: "1988-09-11" },
+                success: function (data, status) {
+                    if (status == "success") {
+                        $("#bitch").html(data);
+                        //window.alert("Success");
+                    }
+                }
+            });
+        });
+
+        var postdata = { ID: "2", NAME: "Sam", BIR: "1900-09-11" };
+      $("#fuckclick2").click(function () {
+            //window.alert("Click");
+            $.ajax({
+                type: "get",
+                url: "http://localhost:8701/data/",
+                data: postdata,
+                success: function (data, status) {
+                    if (status == "success") {
+                        $("#bitch").html(data);
+                        //window.alert("Success");
+                    }
+                }
+            });
+        })
+      $("#fuckclick3").click(function () {
+          //window.alert("Click");
+          $.ajax({
+              type: "get",
+              url: "http://localhost:8701/data/",
+              contentType: "application/json",
+              data: { strQuery: JSON.stringify({ ID: "3", NAME: "JayChou", BIR: "1911-09-11" }) },
+              success: function (data, status) {
+                  if (status == "success") {
+                      $("#bitch").html(data);
+                  }
+              }
+          });
+      })
+
+      $("#fuckclick4").click(function () {
+          //window.alert("Click");
+          $.ajax({
+              type: "post",
+              url: "http://localhost:8701/data/getAllData4",
+              data: { "": "Jim" },
+              success: function (data, status) {
+                  if (status == "success") {
+                      $("#bitch").html(data);
+                  }
+              }
+          });
+      })
+      $("#fuckclick5").click(function () {
+          //window.alert("Click");
+          $.ajax({
+              type: "post",
+              url: "http://localhost:8701/data/getAllData5",
+              contentType: 'application/json',
+              data:   JSON.stringify({ ID: "5", NAME: "JayChou", BIR: "1911-09-11" }) ,
+              success: function (data, status) {
+                  if (status == "success") {
+                      $("#bitch").html(data);
+                  }
+              }
+          });
+      })
+    });
+</script>
+
+  
+}

@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicoServiceTest", "MicoServiceTest\MicoServiceTest.csproj", "{7454784E-DDB7-46F7-96B7-6F69997214B9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{E88F7683-A900-4830-9CD7-FCD5951C4908}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTTPRequestConsole", "HTTPRequestConsole\HTTPRequestConsole.csproj", "{B9E8EEF7-C945-42F4-8624-12A4598038C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{E88F7683-A900-4830-9CD7-FCD5951C4908}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E88F7683-A900-4830-9CD7-FCD5951C4908}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E88F7683-A900-4830-9CD7-FCD5951C4908}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9E8EEF7-C945-42F4-8624-12A4598038C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9E8EEF7-C945-42F4-8624-12A4598038C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9E8EEF7-C945-42F4-8624-12A4598038C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9E8EEF7-C945-42F4-8624-12A4598038C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

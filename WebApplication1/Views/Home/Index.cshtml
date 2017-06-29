@@ -21,7 +21,12 @@
         <input type="button" id="fuckclick2" name="btn" value="GET-[FromUri]-Bean]" />
         <input type="button" id="fuckclick3" name="btn" value="GET-Json-DeserializeObject" />
         <input type="button" id="fuckclick4" name="btn" value="POST-[FromBody]-SingeClass" />
-        <input type="button" id="fuckclick5" name="btn" value="POST-Dynamic" />
+        <input type="button" id="fuckclick5" name="btn" value="POST-Dynamic-MultyBasicPara" />
+        <input type="button" id="fuckclick6" name="btn" value="POST-Dynamic-SingleBean(Bean)" />
+        <input type="button" id="fuckclick7" name="btn" value="POST-Dynamic-SingleBean(JSON)" />
+        <input type="button" id="fuckclick8" name="btn" value="POST-Dynamic-HirBird" />
+        <input type="button" id="fuckclick9" name="btn" value="POST-Array-BasicPara" />
+        <input type="button" id="fuckclick10" name="btn" value="POST-Array-BeanPara" />
     </div>
     <div class="col-md-4">
         <h2>Get more libraries</h2>
@@ -112,7 +117,89 @@
               }
           });
       })
+      $("#fuckclick6").click(function () {
+          //window.alert("Click");
+          $.ajax({
+              type: "post",
+              url: "http://localhost:8701/data/getAllData6",
+              //contentType: 'application/json',
+              data:{ ID: "5", NAME: "JayChou", BIR: "1911-09-11" },
+              success: function (data, status) {
+                  if (status == "success") {
+                      $("#bitch").html(data);
+                  }
+              }
+          });
+      })
+      $("#fuckclick7").click(function () {
+          //window.alert("Click");
+          var postdata = { ID: "5", NAME: "JayChou", BIR: "1911-09-11" };
+          $.ajax({
+              type: "post",
+              url: "http://localhost:8701/data/getAllData7",
+              contentType: 'application/json',
+              data: JSON.stringify(postdata),
+              success: function (data, status) {
+                  if (status == "success") {
+                      $("#bitch").html(data);
+                  }
+              }
+          });
+      })
+      $("#fuckclick8").click(function () {
+          //window.alert("Click");
+          var postdata = { ID: "5", NAME: "JayChou", BIR: "1911-09-11" };
+          $.ajax({
+              type: "post",
+              url: "http://localhost:8701/data/getAllData8",
+              contentType: 'application/json',
+              data: JSON.stringify({ Name: "Tomy", User:postdata }),
+              success: function (data, status) {
+                  if (status == "success") {
+                      $("#bitch").html(data);
+                  }
+              }
+          });
+      })
+      $("#fuckclick9").click(function () {
+          //window.alert("Click");
+          var arr = ["1",
+              "2",
+              "3"
+      ];
+          $.ajax({
+              type: "post",
+              url: "http://localhost:8701/data/getAllData9",
+              contentType: 'application/json',
+              data: JSON.stringify(arr),
+              success: function (data, status) {
+                  if (status == "success") {
+                      $("#bitch").html(data);
+                  }
+              }
+          });
+      })
     });
+
+    $("#fuckclick10").click(function () {
+        //window.alert("Click");
+        var arr = [{ ID: "5", NAME: "JayChou", BIR: "1911-09-11" },
+        { ID: "6", NAME: "JayChou", BIR: "1911-09-11" },
+        { ID: "7", NAME: "JayChou", BIR: "1911-09-11" }
+        ];
+        $.ajax({
+            type: "post",
+            url: "http://localhost:8701/data/getAllData10",
+            contentType: 'application/json',
+            data: JSON.stringify(arr),
+            success: function (data, status) {
+                if (status == "success") {
+                    $("#bitch").html(data);
+                }
+            }
+        });
+    })
+
 </script>
 
   

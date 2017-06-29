@@ -80,12 +80,66 @@ namespace MicoServiceTest.SelfHost.Controllers
             string result = "Data:" + name;
             return result;
         }
-
+        //Post 多个请求基础类型数据的传递问题
         [HttpPost, Route("data/getAllData5")]
         public string getAllData5(dynamic obj)
         {
-            string result = Convert.ToString(obj);
+            //obj.X X应与JSON 字段大小写匹配
+            string result = "Data:" + obj.ID + " " + obj.NAME + " " + obj.BIR.ToString();
             return result;
+        }
+        //Post 单个实体作为参数(非Json)
+        [HttpPost, Route("data/getAllData6")]
+        public string getAllData6(User user)
+        {
+            //obj.X X应与JSON 字段大小写匹配
+            string result = "Data:" + user.id + " " + user.name + " " + user.bir.ToString();
+            return result;
+        }
+
+        //Post 单个实体作为参数(Json)
+        [HttpPost, Route("data/getAllData7")]
+        public string getAllData7(User user)
+        {
+            //obj.X X应与JSON 字段大小写匹配
+            string result = "Data:" + user.id + " " + user.name + " " + user.bir.ToString();
+            return result;
+        }
+
+        //Post 基础和实体类 HirBird
+        [HttpPost, Route("data/getAllData8")]
+        public string getAllData8(dynamic obj)
+        {
+            //obj.X X应与JSON 字段大小写匹配
+            var strName = Convert.ToString(obj.Name);
+            var strUser= Newtonsoft.Json.JsonConvert.DeserializeObject<User>(Convert.ToString(obj.User));
+            return strName+"   "+strUser;
+        }
+
+        //Post Arr 基础类型
+        [HttpPost, Route("data/getAllData9")]
+        public string getAllData9(string [] ids)
+        {
+            var idsq = "";
+            foreach (var item in ids)
+            {
+                idsq += item + " ";
+            }
+
+            return idsq;
+        }
+
+        //Post Arr Bean类型
+        [HttpPost, Route("data/getAllData10")]
+        public string getAllData10(List<User> list)
+        {
+            var ids = "";
+            foreach (var item in list)
+            {
+                ids += item.id+" ";
+            }
+
+            return ids;
         }
     }
 }

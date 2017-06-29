@@ -2,36 +2,38 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Results;
 
 namespace MicoServiceTest.SelfHost.Controllers
 {
 
     //[RoutePrefix("api/device/v1")]
-    public class VideoController : ApiController
+    public class ParaPassController : ApiController
     {
-        [HttpGet, Route("off/{id}")]
-        //[HttpGet]
-        public IHttpActionResult offID(String id)
-        {
-            if (id.Equals(""))
-                return NotFound();
-            else
-                return Ok<String>(id);
+        //    [HttpGet, Route("off/{id}")]
+        //    //[HttpGet]
+        //    public IHttpActionResult offID(String id)
+        //    {
+        //        if (id.Equals(""))
+        //            return NotFound();
+        //        else
+        //            return Ok<String>(id);
 
-        }
-        [HttpGet, Route("on/{id}")]
-        //[HttpGet]
-        public IHttpActionResult onID(String id)
-        {
-            if (id.Equals(""))
-                return NotFound();
-            else
-                return Ok(id);
+        //    }
+        //    [HttpGet, Route("on/{id}")]
+        //    //[HttpGet]
+        //    public IHttpActionResult onID(String id)
+        //    {
+        //        if (id.Equals(""))
+        //            return NotFound();
+        //        else
+        //            return Ok(id);
 
-        }
+        //    }
 
         // 简单的GET请求
         // 请求参数要与函数匹配否则报错
@@ -140,6 +142,72 @@ namespace MicoServiceTest.SelfHost.Controllers
             }
 
             return ids;
+        }
+
+        [HttpPut, Route("data/Update")]
+        public Boolean Update(dynamic obj)
+        {
+            if (obj.ID == "1")
+                return true;
+            else return false;
+        }
+
+        [HttpDelete, Route("data/Delete")]
+        public Boolean Delete(dynamic obj)
+        {
+            string str= Convert.ToString(obj);
+            List<User> userList =
+            Newtonsoft.Json.JsonConvert.DeserializeObject<List<User>>(str);
+            return true;
+        }
+        [HttpGet, Route("data/getJsonBack")]
+        public IHttpActionResult getJsonBack()
+        {
+            var users = new List<User>();
+            users.Add(new User("1", "t", new DateTime()));
+            users.Add(new User("2", "tt", new DateTime()));
+            return Json<List<User>>(users);
+        }
+
+        //getMultyBasicBack
+        [HttpGet, Route("data/getMultyBasicBack")]
+        public IHttpActionResult getMultyBasicBack()
+        {
+         
+            return Json<dynamic>(new { A="a",B="b"});
+        }
+
+        [HttpGet, Route("data/GetOKResult")]
+        public IHttpActionResult GetOKResult(string name)
+        {
+            //return Ok();//只有200 访问成功
+            return Ok<string>(name);//除了200 还能带一个str
+        }
+
+        [HttpGet, Route("data/GetNotFoundResult")]
+        public IHttpActionResult GetNotFoundResult(string name)
+        {
+            return NotFound();//404
+        }
+
+        //getHttpStatusCode
+        [HttpGet, Route("data/getHttpStatusCode")]
+        public IHttpActionResult getHttpStatusCode(string name)
+        {
+            return Content<string>(HttpStatusCode.OK, "OK");
+        }
+        [HttpGet, Route("data/GetBadRequest")]
+        public IHttpActionResult GetBadRequest(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return BadRequest();
+            return Ok();
+        }
+
+        [HttpGet, Route("data/RedirectResult")]
+        public IHttpActionResult RedirectResult()
+        {
+            return Redirect("http://www.baidu.com");
         }
     }
 }

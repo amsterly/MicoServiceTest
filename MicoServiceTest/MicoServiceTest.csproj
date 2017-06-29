@@ -114,7 +114,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelfHost\Controllers\PictureController.cs" />
-    <Compile Include="SelfHost\Controllers\VideoController.cs" />
+    <Compile Include="SelfHost\Controllers\ParaPassController.cs" />
     <Compile Include="SelfHost\SelfHostConfig.cs" />
     <Compile Include="SelfHost\SelfHostService.cs" />
     <Compile Include="ServiceLocator .cs" />

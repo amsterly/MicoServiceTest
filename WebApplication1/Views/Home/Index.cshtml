@@ -27,6 +27,15 @@
         <input type="button" id="fuckclick8" name="btn" value="POST-Dynamic-HirBird" />
         <input type="button" id="fuckclick9" name="btn" value="POST-Array-BasicPara" />
         <input type="button" id="fuckclick10" name="btn" value="POST-Array-BeanPara" />
+        <input type="button" id="fuckclick11" name="btn" value="Put" />
+        <input type="button" id="fuckclick12" name="btn" value="Delete" />
+        <input type="button" id="fuckclick13" name="btn" value="BackValue-GET-JSON" />
+        <input type="button" id="fuckclick14" name="btn" value="BackValue-GET-MultyBasic" />
+        <input type="button" id="fuckclick15" name="btn" value="BackValue-GET-OK/OK<>" />
+        <input type="button" id="fuckclick16" name="btn" value="BackValue-GET-NotFound" />
+        <input type="button" id="fuckclick17" name="btn" value="BackValue-GET-Content<T>(HttpStatusCode statusCode, T value)" />
+        <input type="button" id="fuckclick18" name="btn" value="BackValue-GET-BadRequest()" />
+        <input type="button" id="fuckclick19" name="btn" value="BackValue-GET-Redirect(string location)" />
     </div>
     <div class="col-md-4">
         <h2>Get more libraries</h2>
@@ -200,7 +209,150 @@
         });
     })
 
-</script>
+    $("#fuckclick11").click(function () {
 
-  
+        $.ajax({
+            type: "put",
+            url: "http://localhost:8701/data/Update",
+            contentType: 'application/json',
+            data: JSON.stringify({ ID: "1" }),
+            success: function (data, status) {
+                if (status == "success") {
+                    $("#bitch").html(data);
+                }
+            }
+        });
+    })
+
+    $("#fuckclick12").click(function () {
+        var arr = [{ ID: "5", NAME: "JayChou", BIR: "1911-09-11" },
+        { ID: "6", NAME: "JayChou", BIR: "1911-09-11" },
+        { ID: "7", NAME: "JayChou", BIR: "1911-09-11" }
+        ];
+        $.ajax({
+            type: "delete",
+            url: "http://localhost:8701/data/Delete",
+            contentType: 'application/json',
+            data: JSON.stringify(arr),
+            success: function (data, status) {
+                if (status == "success") {
+               
+                    $("#bitch").html(data);
+                }
+            }
+        });
+    })
+    $("#fuckclick13").click(function () {
+      
+        $.ajax({
+            type: "get",
+            url: "http://localhost:8701/data/getJsonBack",
+            //contentType: 'application/json',
+            data: {},
+            success: function (data, status) {
+                if (status == "success") {
+                    //$("#bitch").html(data);
+                    window.alert(data);
+                }
+            }
+        });
+    })
+    $("#fuckclick14").click(function () {
+
+        $.ajax({
+            type: "get",
+            url: "http://localhost:8701/data/getMultyBasicBack",
+            //contentType: 'application/json',
+            data: {},
+            success: function (data, status) {
+                if (status == "success") {
+                    //$("#bitch").html(data);
+                    window.alert(data);
+                }
+            }
+        });
+    })
+
+    //GetOKResult
+    $("#fuckclick15").click(function () {
+
+        $.ajax({
+            type: "get",
+            url: "http://localhost:8701/data/GetOKResult",
+            //contentType: 'application/json',
+            data: {Name:"RUOK"},
+            success: function (data, status) {
+                if (status == "success") {
+                    //$("#bitch").html(data);
+                    window.alert(data);
+                }
+            }
+        });
+    })
+    //GetNotFoundResult
+    $("#fuckclick16").click(function () {
+
+        $.ajax({
+            type: "get",
+            url: "http://localhost:8701/data/GetNotFoundResult",
+            //contentType: 'application/json',
+            data: { Name: "RUOK"},
+            success: function (data, status) {
+                if (status == "success") {
+                    //$("#bitch").html(data);
+                    window.alert(data);
+                }
+            }
+        });
+    })
+
+    //GetNotFoundResult
+    $("#fuckclick17").click(function () {
+
+        $.ajax({
+            type: "get",
+            url: "http://localhost:8701/data/getHttpStatusCode",
+            //contentType: 'application/json',
+            data: { Name: "RUOK" },
+            success: function (data, status) {
+                if (status == "success") {
+                    //$("#bitch").html(data);
+                    window.alert(data);
+                }
+            }
+        });
+    })
+    $("#fuckclick18").click(function () {
+
+        $.ajax({
+            type: "get",
+            url: "http://localhost:8701/data/GetBadRequest",
+            //contentType: 'application/json',
+            data: { Name: "" },
+            success: function (data, status) {
+                if (status == "success") {
+                    //$("#bitch").html(data);
+                    window.alert(data);
+                }
+            }
+        });
+    })
+    $("#fuckclick19").click(function () {
+
+        $.ajax({
+            type: "get",
+            url: "http://localhost:8701/data/RedirectResult",
+            //contentType: 'application/json',
+            data: {  },
+            success: function (data, status) {
+                if (status == "success") {
+                    if (data.status == 302) {
+                        location.href = data.location;
+                    }
+                }
+            }
+        });
+    })
+</script>
 }
+  

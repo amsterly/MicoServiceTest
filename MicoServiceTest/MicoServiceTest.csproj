@@ -109,10 +109,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppConfig.cs" />
+    <Compile Include="ExceptionFilterAttrbute\LogFilterAttribute.cs" />
+    <Compile Include="ExceptionFilterAttrbute\WebApiExceptionFilterAttribute.cs" />
     <Compile Include="Interface\IService.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Result\PageResult.cs" />
     <Compile Include="SelfHost\Controllers\PictureController.cs" />
     <Compile Include="SelfHost\Controllers\ParaPassController.cs" />
     <Compile Include="SelfHost\SelfHostConfig.cs" />

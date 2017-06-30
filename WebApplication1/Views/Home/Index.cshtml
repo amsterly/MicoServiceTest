@@ -36,6 +36,9 @@
         <input type="button" id="fuckclick17" name="btn" value="BackValue-GET-Content<T>(HttpStatusCode statusCode, T value)" />
         <input type="button" id="fuckclick18" name="btn" value="BackValue-GET-BadRequest()" />
         <input type="button" id="fuckclick19" name="btn" value="BackValue-GET-Redirect(string location)" />
+        <input type="button" id="fuckclick20" name="btn" value="BackValue-GET-SelfDefine_implements IHttpActionResult" />
+        <input type="button" id="fuckclick21" name="btn" value="BackValue-GET-HttpResponseMessage" />
+        <input type="button" id="fuckclick22" name="btn" value="Excet" />
     </div>
     <div class="col-md-4">
         <h2>Get more libraries</h2>
@@ -349,6 +352,50 @@
                     if (data.status == 302) {
                         location.href = data.location;
                     }
+                }
+            }
+        });
+    })//fuckclick20
+    $("#fuckclick20").click(function () {
+
+        $.ajax({
+            type: "get",
+            url: "http://localhost:8701/data/GetPageRow",
+            //contentType: 'application/json',
+            data: { limit: 1, offset: 1 },
+            success: function (data, status) {
+                if (status == "success") {
+                    $("#bitch").html(data);
+                }
+            }
+        });
+    })
+
+    $("#fuckclick21").click(function () {
+
+        $.ajax({
+            type: "get",
+            url: "http://localhost:8701/data/GetPageRow",
+            //contentType: 'application/json',
+            data: {  },
+            success: function (data, status) {
+                if (status == "success") {
+                    $("#bitch").html(data);
+                }
+            }
+        });
+    })
+
+    $("#fuckclick22").click(function () {
+
+        $.ajax({
+            type: "get",
+            url: "http://localhost:8701/data/getException",
+            //contentType: 'application/json',
+            data: {},
+            success: function (data, status) {
+                if (status == "success") {
+                    $("#bitch").html(data);
                 }
             }
         });

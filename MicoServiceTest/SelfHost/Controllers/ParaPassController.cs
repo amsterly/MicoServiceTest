@@ -1,15 +1,20 @@
 ﻿using MicoServiceTest.Model;
+using MicoServiceTest.Result;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
 
 namespace MicoServiceTest.SelfHost.Controllers
 {
+
+    //下列方法运行在线程池中
 
     //[RoutePrefix("api/device/v1")]
     public class ParaPassController : ApiController
@@ -207,7 +212,31 @@ namespace MicoServiceTest.SelfHost.Controllers
         [HttpGet, Route("data/RedirectResult")]
         public IHttpActionResult RedirectResult()
         {
+            Console.WriteLine("线程id:" + Thread.CurrentThread.ManagedThreadId);
+
             return Redirect("http://www.baidu.com");
         }
+
+        [HttpGet, Route("data/GetPageRow")]
+        public IHttpActionResult GetPageRow(int limit, int offset)
+        {
+            var lstRes = new List<User>();
+
+            //实际项目中，通过后台取到集合赋值给lstRes变量。这里只是测试。
+            lstRes.Add(new User("1", "Tomy", new DateTime()) { });
+            lstRes.Add(new User("2", "Tomy", new DateTime()) {  });
+            Console.WriteLine("线程id:"+Thread.CurrentThread.ManagedThreadId);
+            var oData = new { total = lstRes.Count, rows = lstRes.Skip(offset).Take(limit).ToList() };
+            return new PageResult(oData, Request);
+        }
+        //HttpResponseMessage 将文件流保存在StreamContent对象里面，然后输出到浏览器。在浏览器端即可将Excel输出。
+        //http://www.cnblogs.com/landeanfen/p/5501487.html#_label1_4
+
+        [HttpGet, Route("data/getException")]
+        public IHttpActionResult getException()
+        {
+            throw new NotImplementedException("方法不被支持");//返回 501
+        }
+
     }
 }

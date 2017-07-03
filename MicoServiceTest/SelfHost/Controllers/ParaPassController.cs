@@ -8,8 +8,10 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Results;
+using System.Web.Http.Controllers;
 
 namespace MicoServiceTest.SelfHost.Controllers
 {
@@ -19,6 +21,14 @@ namespace MicoServiceTest.SelfHost.Controllers
     //[RoutePrefix("api/device/v1")]
     public class ParaPassController : ApiController
     {
+        //private HttpControllerContext controllerContext;
+        //protected override void Initialize(HttpControllerContext controllerContext)
+        //{
+        //    base.Initialize(controllerContext);
+        //    this.controllerContext = controllerContext;
+            
+        //}
+
         //    [HttpGet, Route("off/{id}")]
         //    //[HttpGet]
         //    public IHttpActionResult offID(String id)
@@ -213,7 +223,7 @@ namespace MicoServiceTest.SelfHost.Controllers
         public IHttpActionResult RedirectResult()
         {
             Console.WriteLine("线程id:" + Thread.CurrentThread.ManagedThreadId);
-
+      
             return Redirect("http://www.baidu.com");
         }
 
@@ -235,8 +245,14 @@ namespace MicoServiceTest.SelfHost.Controllers
         [HttpGet, Route("data/getException")]
         public IHttpActionResult getException()
         {
+            
             throw new NotImplementedException("方法不被支持");//返回 501
         }
 
+
+
     }
+
+
+   
 }

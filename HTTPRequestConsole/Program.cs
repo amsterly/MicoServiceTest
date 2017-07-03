@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,8 +13,23 @@ namespace HTTPRequestConsole
     {
         static void Main(string[] args)
         {
-            TestReques();
-            Console.Read();
+            Console.WriteLine("请选择下列操作(输入数字后回车)：\n 1:发送Post请求 \n 2：上传多个文件\n 3.下载文件\n 4.退出程序\n ");
+            int num = Convert.ToInt32(Console.ReadLine());
+            while (num!=4)
+            {
+                switch (num)
+                {
+                    case 1: TestReques(); break;
+                    case 2: UploadFiles(); break;
+                    case 3: break;
+             
+                    default: Console.WriteLine("错误的输入数字[1-4]后回车"); break;
+                }
+            }
+
+            Environment.Exit(0);
+
+
         }
 
         public static  void TestReques()
@@ -51,6 +67,35 @@ namespace HTTPRequestConsole
             StreamReader reader = new StreamReader(dataStream);
             string responseFromServer = reader.ReadToEnd();//读取所有
             Console.WriteLine(responseFromServer);
+        }
+        public static void UploadFiles()
+        {
+            var message = new HttpRequestMessage();
+            var content = new MultipartFormDataContent();
+            var files = new List<string> { "WebApiDoc01.png", "WebApiDoc02.png" };
+
+            foreach (var file in files)
+            {
+                var filestream = new FileStream(file, FileMode.Open);
+                var fileName = System.IO.Path.GetFileName(file);
+                content.Add(new StreamContent(filestream), "file", fileName);
+            }
+
+            message.Method = HttpMethod.Post;
+            message.Content = content;
+            message.RequestUri = new Uri("http://localhost:8701/data/filesNoContentType");
+
+            var client = new HttpClient();
+            client.SendAsync(message).ContinueWith(task =>
+            {
+                if (task.Result.IsSuccessStatusCode)
+                {
+                    var result = task.Result;
+                    Console.WriteLine(result);
+                }
+            });
+
+            Console.ReadLine();
         }
     }
 }

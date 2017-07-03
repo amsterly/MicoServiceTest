@@ -30,6 +30,7 @@ namespace MicoServiceTest
             //出于安全考虑，浏览器会限制脚本中发起的跨站请求，浏览器要求JavaScript或Cookie只能访问同域下的内容
             //开启跨域  
             app.UseCors(CorsOptions.AllowAll);
+            
             app.UseWebApi(config);
          
         }

@@ -32,7 +32,8 @@ OWIN定义了.NET web服务器和web应用程序间的抽象。OWIN通过将web�
 HTTPRequestConsole 模拟HTTP请求</br>
 WebApplication1 模拟网页AJAX请求</br>
 MicoServiceTest WebAPI基于OWIN的控制台微服务</br>
-
+## 程序内容
+程序使用HTTP请求以及网页Ajax请求 WebApi 实现各种类型的参数返回值的api测试，加入异常处理、日志记录，加入多文件上传，文件下载功能。
 ## 参考网站
 https://damienbod.com/2014/03/28/web-api-file-upload-single-or-multiple-files/
 https://www.strathweb.com/2012/08/a-guide-to-asynchronous-file-uploads-in-asp-net-web-api-rtm/

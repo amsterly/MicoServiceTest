@@ -36,3 +36,5 @@ MicoServiceTest WebAPI基于OWIN的控制台微服务</br>
 ## 参考网站
 https://damienbod.com/2014/03/28/web-api-file-upload-single-or-multiple-files/
 https://www.strathweb.com/2012/08/a-guide-to-asynchronous-file-uploads-in-asp-net-web-api-rtm/
+## Git提交解决
+https://my.oschina.net/tearlight/blog/193913

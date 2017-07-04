@@ -21,7 +21,7 @@ namespace MicoServiceTest
             config.EnsureInitialized();
             config.Routes.MapHttpRoute(
                 name: "Default",
-                routeTemplate: "api/device/v1/{controller}/{id}",
+                routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
             //config.Filters.Add(new WebApiExceptionFilterAttribute());

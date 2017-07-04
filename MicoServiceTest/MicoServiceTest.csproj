@@ -119,7 +119,7 @@
     <Compile Include="Result\PageResult.cs" />
     <Compile Include="SelfHost\Controllers\FileResult.cs" />
     <Compile Include="SelfHost\Controllers\FileUploadController.cs" />
-    <Compile Include="SelfHost\Controllers\PictureController.cs" />
+    <Compile Include="SelfHost\Controllers\FileDownloadController.cs" />
     <Compile Include="SelfHost\Controllers\ParaPassController.cs" />
     <Compile Include="SelfHost\Controllers\ValidateMimeMultipartContentFilter.cs" />
     <Compile Include="SelfHost\SelfHostConfig.cs" />

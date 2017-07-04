@@ -19,8 +19,8 @@ namespace HTTPRequestConsole
             {
                 switch (num)
                 {
-                    case 1: TestReques(); break;
-                    case 2: UploadFiles(); break;
+                    case 1: TestReques(); Console.WriteLine("已发送Post请求"); break;
+                    case 2: UploadFiles(); Console.WriteLine("已上传多个文件"); break;
                     case 3: break;
              
                     default: Console.WriteLine("错误的输入数字[1-4]后回车"); break;

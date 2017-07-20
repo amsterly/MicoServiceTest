@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,8 +15,16 @@ namespace HTTPRequestConsole
 
         private static  string url = "http://localhost:8701/file";
         static void Main(string[] args)
-        {
+        {   //Join方法测试
             //JoinText();
+            //Task启动
+            TaskTest.testWaits();
+            //模拟HTTP请求WebApi
+            // HTTPRequest();
+
+        }
+        private static void HTTPRequest()
+        {
             cc: Console.WriteLine("请选择下列操作(输入数字后回车)：\n 1:发送Post请求 \n 2：上传多个文件\n 3.下载文件\n 4.退出程序\n ");
             int num = Convert.ToInt32(Console.ReadLine());
             if (num != 4)
@@ -25,15 +34,12 @@ namespace HTTPRequestConsole
                     case 1: TestReques(); Console.WriteLine("已发送Post请求"); break;
                     case 2: UploadFiles(); Console.WriteLine("已上传多个文件"); break;
                     case 3: if (DownloadFile(url, Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "nb.png"))) Console.WriteLine("已下载文件"); break;
-
                     default: Console.WriteLine("错误的输入数字[1-4]后回车"); break;
                 }
                 goto cc;
             }
 
             Environment.Exit(0);
-
-
         }
 
         /*Join方法效果Demo 先执行add（6s）sub 主线程等待两个线程执行结束，sub中addthread.join（2s）等待add 2秒 因需要执行6s 返回false 
